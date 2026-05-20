@@ -38,7 +38,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#09090b',
+  themeColor: '#000000',
   width: 'device-width',
   initialScale: 1,
 }
@@ -49,8 +49,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} bg-background`}>
-      <body className="font-sans antialiased min-h-screen">
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} bg-black`}>
+      <body className="font-sans antialiased min-h-screen bg-black text-white">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
