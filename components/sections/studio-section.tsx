@@ -13,10 +13,10 @@ export function StudioSection() {
   return (
     <section id="studio" className="min-h-screen bg-black py-32 md:py-48 flex flex-col justify-center relative overflow-hidden">
       {/* Subtle animated background */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/3 left-1/4 w-[350px] h-[350px] rounded-full bg-white/[0.01] blur-[90px] animate-drift" />
-        <div className="absolute bottom-1/4 right-1/4 w-[450px] h-[450px] rounded-full bg-white/[0.012] blur-[110px] animate-drift-reverse" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-white/[0.008] blur-[130px] animate-pulse-slow" />
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-1/3 left-1/4 w-[450px] h-[450px] rounded-full bg-white/[0.03] blur-[110px] animate-drift" />
+        <div className="absolute bottom-1/4 right-1/4 w-[550px] h-[550px] rounded-full bg-white/[0.035] blur-[130px] animate-drift-reverse" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-white/[0.04] blur-[160px] animate-pulse-slow" />
       </div>
 
       {/* Section label */}

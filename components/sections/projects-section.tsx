@@ -29,10 +29,10 @@ export function ProjectsSection() {
   return (
     <section id="projects" className="min-h-screen bg-black py-32 md:py-48 flex flex-col justify-center relative overflow-hidden">
       {/* Subtle animated background */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] rounded-full bg-white/[0.012] blur-[100px] animate-drift" />
-        <div className="absolute bottom-1/4 left-1/3 w-[400px] h-[400px] rounded-full bg-white/[0.008] blur-[80px] animate-drift-reverse" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-white/[0.01] blur-[150px] animate-pulse-slow" />
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] rounded-full bg-white/[0.035] blur-[120px] animate-drift" />
+        <div className="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-white/[0.03] blur-[100px] animate-drift-reverse" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-white/[0.04] blur-[180px] animate-pulse-slow" />
       </div>
 
       {/* Section label */}
