@@ -28,11 +28,16 @@ export function ProjectsSection() {
 
   return (
     <section id="projects" className="min-h-screen bg-black py-32 md:py-48 flex flex-col justify-center relative overflow-hidden">
-      {/* Subtle animated background */}
+      {/* Animated background with more motion */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] rounded-full bg-white/[0.035] blur-[120px] animate-drift" />
-        <div className="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-white/[0.03] blur-[100px] animate-drift-reverse" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-white/[0.04] blur-[180px] animate-pulse-slow" />
+        {/* Central morphing blob */}
+        <div className="absolute top-1/2 left-1/2 w-[700px] h-[700px] bg-white/[0.025] blur-[120px] animate-morph" />
+        {/* Drifting orbs */}
+        <div className="absolute top-[15%] right-[25%] w-[400px] h-[400px] rounded-full bg-white/[0.03] blur-[100px] animate-drift" />
+        <div className="absolute bottom-[20%] left-[15%] w-[350px] h-[350px] rounded-full bg-white/[0.025] blur-[90px] animate-drift-reverse" />
+        <div className="absolute top-[40%] left-[10%] w-[280px] h-[280px] rounded-full bg-white/[0.02] blur-[80px] animate-float" />
+        {/* Pulsing accent */}
+        <div className="absolute bottom-[30%] right-[10%] w-[320px] h-[320px] rounded-full bg-white/[0.02] blur-[100px] animate-pulse-slow" />
       </div>
 
       {/* Section label */}
