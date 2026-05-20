@@ -124,6 +124,67 @@
   }
 }
 
+@keyframes pulseSlow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+}
+
+@keyframes drift {
+  0%, 100% {
+    transform: translate(0, 0);
+    opacity: 0.8;
+  }
+  25% {
+    transform: translate(30px, -20px);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(10px, 20px);
+    opacity: 0.6;
+  }
+  75% {
+    transform: translate(-20px, 10px);
+    opacity: 0.9;
+  }
+}
+
+@keyframes driftReverse {
+  0%, 100% {
+    transform: translate(0, 0);
+    opacity: 0.7;
+  }
+  25% {
+    transform: translate(-25px, 15px);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translate(-10px, -25px);
+    opacity: 0.5;
+  }
+  75% {
+    transform: translate(15px, -10px);
+    opacity: 0.8;
+  }
+}
+
+@layer utilities {
+  .animate-pulse-slow {
+    animation: pulseSlow 8s ease-in-out infinite;
+  }
+  .animate-drift {
+    animation: drift 20s ease-in-out infinite;
+  }
+  .animate-drift-reverse {
+    animation: driftReverse 25s ease-in-out infinite;
+  }
+}
+
 /* Hide scrollbar but keep functionality */
 @layer utilities {
   .scrollbar-hide {

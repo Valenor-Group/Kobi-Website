@@ -77,6 +77,9 @@ export function InquireSection() {
             SPOTIFY
           </a>
           <a href="#" className="text-editorial hover:text-white/80 transition-smooth">
+            APPLE MUSIC
+          </a>
+          <a href="#" className="text-editorial hover:text-white/80 transition-smooth">
             INSTAGRAM
           </a>
         </div>

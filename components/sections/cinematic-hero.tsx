@@ -6,14 +6,21 @@ export function CinematicHero() {
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href)
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
   }
 
   return (
-    <section className="relative h-screen w-full flex flex-col justify-between bg-black">
+    <section id="home" className="relative h-screen w-full flex flex-col justify-between bg-black overflow-hidden">
+      {/* Subtle animated background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-white/[0.015] blur-[120px] animate-pulse-slow" />
+        <div className="absolute top-1/3 left-1/3 w-[300px] h-[300px] rounded-full bg-white/[0.01] blur-[80px] animate-drift" />
+        <div className="absolute bottom-1/3 right-1/3 w-[400px] h-[400px] rounded-full bg-white/[0.008] blur-[100px] animate-drift-reverse" />
+      </div>
+
       {/* Center directory */}
-      <div className="flex-1 flex items-center justify-center">
+      <div className="flex-1 flex items-center justify-center relative z-10">
         <nav className="flex flex-col items-center gap-6">
           {navItems.map((item, index) => (
             <button
@@ -30,7 +37,7 @@ export function CinematicHero() {
       </div>
 
       {/* Bottom left - Portrait and audio toggle */}
-      <div className="absolute bottom-8 left-8 flex items-center gap-4 animate-fade-in-delay-3">
+      <div className="absolute bottom-8 left-8 flex items-center gap-4 animate-fade-in-delay-3 z-10">
         <div className="w-12 h-12 bg-white/10 overflow-hidden">
           <div className="w-full h-full bg-gradient-to-br from-white/20 to-transparent" />
         </div>
@@ -38,7 +45,7 @@ export function CinematicHero() {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 right-8 animate-fade-in-delay-3">
+      <div className="absolute bottom-8 right-8 animate-fade-in-delay-3 z-10">
         <span className="text-editorial">SCROLL</span>
       </div>
     </section>

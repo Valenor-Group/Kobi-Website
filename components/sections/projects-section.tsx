@@ -27,14 +27,21 @@ export function ProjectsSection() {
   }
 
   return (
-    <section id="projects" className="min-h-screen bg-black py-32 md:py-48 flex flex-col justify-center">
+    <section id="projects" className="min-h-screen bg-black py-32 md:py-48 flex flex-col justify-center relative overflow-hidden">
+      {/* Subtle animated background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] rounded-full bg-white/[0.012] blur-[100px] animate-drift" />
+        <div className="absolute bottom-1/4 left-1/3 w-[400px] h-[400px] rounded-full bg-white/[0.008] blur-[80px] animate-drift-reverse" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-white/[0.01] blur-[150px] animate-pulse-slow" />
+      </div>
+
       {/* Section label */}
-      <div className="px-8 mb-16">
+      <div className="px-8 mb-16 relative z-10">
         <span className="text-editorial">[01] PROJECTS</span>
       </div>
 
       {/* Carousel container */}
-      <div className="relative flex items-center">
+      <div className="relative flex items-center z-10">
         {/* Left arrow */}
         <button
           onClick={handlePrev}
@@ -81,7 +88,7 @@ export function ProjectsSection() {
       </div>
 
       {/* Progress indicators */}
-      <div className="flex justify-center gap-3 mt-12">
+      <div className="flex justify-center gap-3 mt-12 relative z-10">
         {projects.map((_, index) => (
           <button
             key={index}
