@@ -1,8 +1,13 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
-export function InquireSection() {
+interface InquireSectionProps {
+  subject: string
+  onSubjectChange: (subject: string) => void
+}
+
+export function InquireSection({ subject, onSubjectChange }: InquireSectionProps) {
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -13,6 +18,7 @@ export function InquireSection() {
     // Placeholder for form submission
     await new Promise((resolve) => setTimeout(resolve, 1000))
     setIsSubmitting(false)
+    onSubjectChange('')
     setEmail('')
     setMessage('')
   }
@@ -32,6 +38,17 @@ export function InquireSection() {
       {/* Form */}
       <div className="px-8 md:px-16 lg:px-32 max-w-2xl mx-auto w-full relative z-10">
         <form onSubmit={handleSubmit} className="space-y-12">
+          {/* Subject field */}
+          <div className="group">
+            <input
+              type="text"
+              value={subject}
+              onChange={(e) => onSubjectChange(e.target.value)}
+              placeholder="SUBJECT_"
+              className="w-full bg-transparent border-0 border-b border-white/20 focus:border-white/50 py-4 text-sharp-lg text-white placeholder:text-white/30 focus:outline-none transition-all duration-300 ease-out"
+            />
+          </div>
+
           {/* Email field */}
           <div className="group">
             <input
@@ -40,7 +57,7 @@ export function InquireSection() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="ENTER EMAIL_"
               required
-              className="w-full bg-transparent border-0 border-b border-white/20 focus:border-white/50 py-4 text-sharp-lg text-white placeholder:text-white/30 focus:outline-none transition-smooth"
+              className="w-full bg-transparent border-0 border-b border-white/20 focus:border-white/50 py-4 text-sharp-lg text-white placeholder:text-white/30 focus:outline-none transition-all duration-300 ease-out"
             />
           </div>
 
@@ -52,7 +69,7 @@ export function InquireSection() {
               placeholder="MESSAGE_"
               rows={4}
               required
-              className="w-full bg-transparent border-0 border-b border-white/20 focus:border-white/50 py-4 text-sharp-lg text-white placeholder:text-white/30 focus:outline-none transition-smooth resize-none"
+              className="w-full bg-transparent border-0 border-b border-white/20 focus:border-white/50 py-4 text-sharp-lg text-white placeholder:text-white/30 focus:outline-none transition-all duration-300 ease-out resize-none"
             />
           </div>
 
@@ -61,7 +78,7 @@ export function InquireSection() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="text-sharp text-white/50 hover:text-white transition-smooth disabled:opacity-30"
+              className="text-sharp text-white/50 hover:text-white transition-all duration-300 ease-out disabled:opacity-30"
             >
               {isSubmitting ? 'SENDING...' : 'SEND INQUIRY →'}
             </button>
@@ -73,13 +90,13 @@ export function InquireSection() {
       <div className="absolute bottom-8 left-8 right-8 flex justify-between items-center">
         <span className="text-editorial">KOBI! — {new Date().getFullYear()}</span>
         <div className="flex gap-6">
-          <a href="#" className="text-editorial hover:text-white/80 transition-smooth">
+          <a href="#" className="text-editorial hover:text-white/80 transition-all duration-300 ease-out">
             SPOTIFY
           </a>
-          <a href="#" className="text-editorial hover:text-white/80 transition-smooth">
+          <a href="#" className="text-editorial hover:text-white/80 transition-all duration-300 ease-out">
             APPLE MUSIC
           </a>
-          <a href="#" className="text-editorial hover:text-white/80 transition-smooth">
+          <a href="#" className="text-editorial hover:text-white/80 transition-all duration-300 ease-out">
             INSTAGRAM
           </a>
         </div>
