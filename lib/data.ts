@@ -33,10 +33,10 @@ export const projects = [
 ] as const
 
 export const studioServices = [
-  { id: '1', title: 'PRODUCTION' },
-  { id: '2', title: 'MIXING' },
-  { id: '3', title: 'MASTERING' },
-  { id: '4', title: 'FEATURE' },
+  { id: '1', title: 'PRODUCTION', description: '— custom sound design and architecture tailored to your demo' },
+  { id: '2', title: 'MIXING', description: '— industry standard sonic balance and spatial engineering' },
+  { id: '3', title: 'MASTERING', description: '— final commercial polish, translation, and dynamic optimization' },
+  { id: '4', title: 'FEATURE', description: '— exclusive vocal production, composition, or verses by kobi!' },
 ] as const
 
 export const navItems = [

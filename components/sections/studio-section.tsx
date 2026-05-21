@@ -2,8 +2,13 @@
 
 import { studioServices } from '@/lib/data'
 
-export function StudioSection() {
-  const scrollToInquire = () => {
+interface StudioSectionProps {
+  onServiceSelect: (service: string) => void
+}
+
+export function StudioSection({ onServiceSelect }: StudioSectionProps) {
+  const handleServiceClick = (serviceTitle: string) => {
+    onServiceSelect(serviceTitle)
     const element = document.querySelector('#inquire')
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -30,18 +35,21 @@ export function StudioSection() {
       </div>
 
       {/* Services list */}
-      <div className="px-8 md:px-16 lg:px-32 max-w-4xl mx-auto w-full relative z-10">
+      <div className="px-8 md:px-16 lg:px-32 max-w-5xl mx-auto w-full relative z-10">
         <ul className="space-y-8 md:space-y-12">
           {studioServices.map((service) => (
             <li key={service.id} className="group">
               <button
-                onClick={scrollToInquire}
-                className="w-full flex items-center justify-between py-4 border-b border-white/10 hover:border-white/30 transition-smooth"
+                onClick={() => handleServiceClick(service.title)}
+                className="w-full flex items-center gap-4 py-4 border-b border-white/10 hover:border-white/30 transition-all duration-300 ease-out text-left"
               >
-                <span className="font-sans text-2xl md:text-4xl lg:text-5xl font-light tracking-tight text-white group-hover:text-white/70 transition-smooth">
+                <span className="font-sans text-2xl md:text-4xl lg:text-5xl font-light tracking-tight text-white group-hover:text-white/70 transition-all duration-300 ease-out whitespace-nowrap">
                   {service.title}
                 </span>
-                <span className="text-editorial opacity-0 group-hover:opacity-100 transition-smooth">
+                <span className="text-white/40 text-sm md:text-base font-mono tracking-wide opacity-0 max-w-0 group-hover:opacity-100 group-hover:max-w-[500px] transition-all duration-300 ease-out overflow-hidden whitespace-nowrap">
+                  {service.description}
+                </span>
+                <span className="text-editorial opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out ml-auto whitespace-nowrap">
                   INQUIRE →
                 </span>
               </button>
