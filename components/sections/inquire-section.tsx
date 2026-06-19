@@ -1,26 +1,41 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import { createClient } from '@/lib/supabase/client'
 
 interface InquireSectionProps {
   subject: string
   onSubjectChange: (subject: string) => void
 }
 
+type SubmitStatus = 'idle' | 'submitting' | 'success' | 'error'
+
 export function InquireSection({ subject, onSubjectChange }: InquireSectionProps) {
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [status, setStatus] = useState<SubmitStatus>('idle')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setIsSubmitting(true)
-    // Placeholder for form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-    setIsSubmitting(false)
+    setStatus('submitting')
+
+    const supabase = createClient()
+    const { error } = await supabase.from('inquiries').insert({
+      subject: subject.trim() || 'GENERAL',
+      email: email.trim(),
+      message: message.trim(),
+    })
+
+    if (error) {
+      setStatus('error')
+      return
+    }
+
+    setStatus('success')
     onSubjectChange('')
     setEmail('')
     setMessage('')
+    setTimeout(() => setStatus('idle'), 4000)
   }
 
   return (
@@ -73,15 +88,25 @@ export function InquireSection({ subject, onSubjectChange }: InquireSectionProps
             />
           </div>
 
-          {/* Submit */}
+          {/* Submit / status */}
           <div className="pt-8">
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="text-sharp text-white/50 hover:text-white transition-all duration-300 ease-out disabled:opacity-30"
-            >
-              {isSubmitting ? 'SENDING...' : 'SEND INQUIRY →'}
-            </button>
+            {status === 'success' ? (
+              <p className="text-sharp text-white animate-fade-in">
+                INQUIRY SENT — I&apos;LL BE IN TOUCH →
+              </p>
+            ) : status === 'error' ? (
+              <p className="text-sharp text-white/60">
+                SOMETHING WENT WRONG — TRY AGAIN →
+              </p>
+            ) : (
+              <button
+                type="submit"
+                disabled={status === 'submitting'}
+                className="text-sharp text-white/50 hover:text-white transition-all duration-300 ease-out disabled:opacity-30"
+              >
+                {status === 'submitting' ? 'SENDING...' : 'SEND INQUIRY →'}
+              </button>
+            )}
           </div>
         </form>
       </div>
