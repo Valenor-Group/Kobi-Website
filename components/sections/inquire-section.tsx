@@ -2,9 +2,11 @@
 
 import Image from 'next/image'
 import { useState } from 'react'
+import { useAudio } from '@/components/audio/audio-provider'
 import { siteConfig } from '@/lib/data'
 import { SectionAtmosphere } from '@/components/shared/section-atmosphere'
 import { AnimateOnScroll } from '@/components/shared/animate-on-scroll'
+import { cn } from '@/lib/utils'
 
 interface InquireSectionProps {
   subject: string
@@ -16,6 +18,7 @@ export function InquireSection({ subject, onSubjectChange }: InquireSectionProps
   const [message, setMessage] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [portraitError, setPortraitError] = useState(false)
+  const { currentTrack } = useAudio()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -115,7 +118,13 @@ export function InquireSection({ subject, onSubjectChange }: InquireSectionProps
         </form>
       </div>
 
-      <AnimateOnScroll className="absolute right-8 bottom-8 left-8 flex items-center justify-between" delay={400}>
+      <AnimateOnScroll
+        className={cn(
+          'absolute right-8 left-8 flex items-center justify-between transition-[bottom] duration-300 ease-out',
+          currentTrack ? 'bottom-24 z-50 md:bottom-28' : 'bottom-8 z-10',
+        )}
+        delay={400}
+      >
         <span className="text-editorial">KOBI! — {new Date().getFullYear()}</span>
         <div className="flex gap-6">
           <a

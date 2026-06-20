@@ -97,7 +97,7 @@ export const projects: Project[] = [
   {
     id: '6',
     title: 'MiSS!ON',
-    type: 'EP',
+    type: 'Single',
     year: '2023',
     image: '/images/album-6.jpg',
     status: 'released',
@@ -125,7 +125,7 @@ export const projects: Project[] = [
   {
     id: '8',
     title: 'Moët',
-    type: 'TBA',
+    type: 'Single',
     year: '2026',
     image: '/images/album-8.jpg',
     status: 'released',
@@ -204,9 +204,9 @@ export const siteConfig = {
   portrait: '/images/kobi-portrait.jpg',
   // Update with your real profile URLs
   social: {
-    spotify: 'https://open.spotify.com/',
-    apple: 'https://music.apple.com/',
-    instagram: 'https://instagram.com/',
+    spotify: 'https://open.spotify.com/artist/3PfySXhK9TkqEJwEUG6muk?si=SgP_9NS_SSmmMOiTLFVWmQ',
+    apple: 'https://music.apple.com/za/artist/kobi/1507618248',
+    instagram: 'https://www.instagram.com/kouldbekobi/',
   },
 } as const
 
