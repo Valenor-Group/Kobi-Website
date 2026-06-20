@@ -74,6 +74,7 @@ export const projects: Project[] = [
     year: '2024',
     image: '/images/album-4.jpg',
     status: 'released',
+    previewUrl: '/audio/preview-4.mp3',
     links: {
       spotify: 'https://open.spotify.com/album/6cZn3a1L9HzgSJAHpE1k1R?si=5twHRMP2TqCbjoWYju4mSQ',
       apple: 'https://music.apple.com/za/album/better-late-than-never-ep/1768398387',
@@ -87,6 +88,7 @@ export const projects: Project[] = [
     year: '2024',
     image: '/images/album-5.jpg',
     status: 'released',
+    previewUrl: '/audio/preview-5.mp3',
     links: {
       spotify: 'https://open.spotify.com/album/5dtqQp9GTsDzJYxyedNFXC?si=sO9-4imPRLebRKEWI08B_Q',
       apple: 'https://music.apple.com/za/album/vision-ep/1742104989',
@@ -99,6 +101,7 @@ export const projects: Project[] = [
     year: '2023',
     image: '/images/album-6.jpg',
     status: 'released',
+    previewUrl: '/audio/preview-6.mp3',
     links: {
       spotify: 'https://open.spotify.com/album/3mAXLbqn1imAJ8lANWhmRq?si=dWt1iUrORvytmMLF48pCfA',
       apple: 'https://music.apple.com/za/album/miss-on-single/1687755704',
@@ -112,6 +115,7 @@ export const projects: Project[] = [
     year: '2022',
     image: '/images/album-7.jpg',
     status: 'released',
+    previewUrl: '/audio/preview-7.mp3',
     links: {
       spotify: 'https://open.spotify.com/album/7CZjS0Kogh9gCPwGPcNAgH?si=FE7gR2mBSGiZeR2fRW-y7w',
       apple: 'https://music.apple.com/za/album/let-go-ep/1654067934',
@@ -125,6 +129,7 @@ export const projects: Project[] = [
     year: '2026',
     image: '/images/album-8.jpg',
     status: 'released',
+    previewUrl: '/audio/preview-8.mp3',
     links: {
       spotify: 'https://open.spotify.com/album/4kQprxoC1VNQaxnjAokOhI?si=Bn4acpENTUyoMDj6LMS1cQ',
       apple: 'https://music.apple.com/za/album/mo%C3%ABt-single/1615476328',
