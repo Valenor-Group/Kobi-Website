@@ -31,7 +31,7 @@ export function InquireSection({ subject, onSubjectChange }: InquireSectionProps
   }
 
   return (
-    <section id="inquire" className="relative flex min-h-screen flex-col bg-black py-32 md:py-48">
+    <section id="inquire" className="relative flex min-h-screen flex-col justify-center bg-black py-32 md:py-48">
       <SectionAtmosphere variant="connect" />
 
       <div className="pointer-events-none absolute inset-0 flex items-center justify-end overflow-hidden pr-8 md:pr-16 lg:pr-24">
@@ -51,7 +51,7 @@ export function InquireSection({ subject, onSubjectChange }: InquireSectionProps
               onError={() => setPortraitError(true)}
             />
             <div
-              className="absolute inset-0 bg-gradient-to-r from-black via-black/50 at-[35%] to-transparent to-[70%]"
+              className="absolute inset-0 bg-gradient-to-r from-black via-black/40 at-[28%] to-transparent to-[58%]"
               aria-hidden
             />
           </div>
@@ -60,12 +60,11 @@ export function InquireSection({ subject, onSubjectChange }: InquireSectionProps
         )}
       </div>
 
-      <div className="relative z-10 flex flex-1 flex-col justify-center">
-        <AnimateOnScroll className="mb-16 px-8">
-          <span className="text-editorial">[03] CONNECT</span>
-        </AnimateOnScroll>
+      <AnimateOnScroll className="relative z-10 mb-16 px-8">
+        <span className="text-editorial">[03] CONNECT</span>
+      </AnimateOnScroll>
 
-        <div className="mx-auto w-full max-w-2xl px-8 md:px-16 lg:px-32">
+      <div className="relative z-10 mx-auto w-full max-w-2xl px-8 pb-24 md:px-16 lg:px-32">
         <form onSubmit={handleSubmit} className="space-y-12">
           <AnimateOnScroll delay={0}>
             <div className="group">
@@ -117,13 +116,12 @@ export function InquireSection({ subject, onSubjectChange }: InquireSectionProps
             </div>
           </AnimateOnScroll>
         </form>
-        </div>
       </div>
 
       <div
         className={cn(
-          'relative z-10 mt-12 flex flex-col gap-4 px-8 transition-[padding] duration-300 sm:flex-row sm:items-center sm:justify-between md:px-16 lg:px-24',
-          currentTrack ? 'pb-20 md:pb-24' : 'pb-4',
+          'absolute right-8 left-8 z-10 flex flex-col gap-4 transition-[bottom] duration-300 sm:flex-row sm:items-center sm:justify-between',
+          currentTrack ? 'bottom-24 z-50 md:bottom-28' : 'bottom-8',
         )}
       >
         <span className="text-editorial">KOBI! — {new Date().getFullYear()}</span>
