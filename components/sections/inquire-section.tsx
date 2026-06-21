@@ -36,7 +36,7 @@ export function InquireSection({ subject, onSubjectChange }: InquireSectionProps
 
       <div className="pointer-events-none absolute inset-0 flex items-center justify-end overflow-hidden pr-8 md:pr-16 lg:pr-24">
         {!portraitError ? (
-          <div className="relative h-[70vh] w-[50vw] max-w-xl shrink-0 opacity-25 md:opacity-30">
+          <div className="relative h-[80vh] w-[50vw] max-w-xl shrink-0 opacity-25 md:opacity-30">
             <Image
               src={siteConfig.portrait}
               alt=""
@@ -56,7 +56,7 @@ export function InquireSection({ subject, onSubjectChange }: InquireSectionProps
             />
           </div>
         ) : (
-          <div className="h-[70vh] w-[50vw] max-w-xl shrink-0 bg-gradient-to-t from-transparent via-white/[0.02] to-transparent opacity-50" />
+          <div className="h-[80vh] w-[50vw] max-w-xl shrink-0 bg-gradient-to-t from-transparent via-white/[0.02] to-transparent opacity-50" />
         )}
       </div>
 
