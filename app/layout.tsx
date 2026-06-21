@@ -15,13 +15,13 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Kobi! | Music Producer & Artist',
+  title: 'Kobi!',
   description: 'Professional music production, mixing, and mastering services. Explore releases and book your session with Kobi!',
   keywords: ['music producer', 'mixing', 'mastering', 'beats', 'production', 'Kobi'],
   authors: [{ name: 'Kobi!' }],
   creator: 'Kobi!',
   openGraph: {
-    title: 'Kobi! | Music Producer & Artist',
+    title: 'Kobi!',
     description: 'Crafting sounds that move. Professional music production, mixing, and mastering services.',
     type: 'website',
     locale: 'en_US',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kobi! | Music Producer & Artist',
+    title: 'Kobi!',
     description: 'Crafting sounds that move. Professional music production services.',
   },
   robots: {
