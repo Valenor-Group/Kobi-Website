@@ -44,9 +44,9 @@ export function InquireSection({ subject, onSubjectChange }: InquireSectionProps
               className="object-cover object-right grayscale"
               style={{
                 maskImage:
-                  'linear-gradient(to bottom, transparent, black 20%, black 80%, transparent)',
+                  'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
                 WebkitMaskImage:
-                  'linear-gradient(to bottom, transparent, black 20%, black 80%, transparent)',
+                  'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
               }}
               onError={() => setPortraitError(true)}
             />
