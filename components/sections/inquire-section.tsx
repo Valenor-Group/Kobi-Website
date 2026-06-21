@@ -17,17 +17,53 @@ export function InquireSection({ subject, onSubjectChange }: InquireSectionProps
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [portraitError, setPortraitError] = useState(false)
   const { currentTrack } = useAudio()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setSubmitStatus('idle')
+
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY
+    if (!accessKey) {
+      setSubmitStatus('error')
+      return
+    }
+
     setIsSubmitting(true)
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-    setIsSubmitting(false)
-    onSubjectChange('')
-    setEmail('')
-    setMessage('')
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject: subject.trim()
+            ? `KOBI! Enquiry: ${subject.trim()}`
+            : 'KOBI! Enquiry — beatsbykobi.com',
+          email,
+          message,
+          from_name: 'KOBI! Website',
+        }),
+      })
+
+      const data = (await response.json()) as { success?: boolean }
+
+      if (!response.ok || !data.success) {
+        setSubmitStatus('error')
+        return
+      }
+
+      setSubmitStatus('success')
+      onSubjectChange('')
+      setEmail('')
+      setMessage('')
+    } catch {
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -109,7 +145,7 @@ export function InquireSection({ subject, onSubjectChange }: InquireSectionProps
           </AnimateOnScroll>
 
           <AnimateOnScroll delay={300}>
-            <div className="pt-8">
+            <div className="space-y-4 pt-8">
               <button
                 type="submit"
                 disabled={isSubmitting}
@@ -117,6 +153,16 @@ export function InquireSection({ subject, onSubjectChange }: InquireSectionProps
               >
                 {isSubmitting ? 'SENDING...' : 'SEND ENQUIRY →'}
               </button>
+              {submitStatus === 'success' && (
+                <p className="text-editorial text-white/70" role="status">
+                  ENQUIRY SENT — WE&apos;LL BE IN TOUCH SOON.
+                </p>
+              )}
+              {submitStatus === 'error' && (
+                <p className="text-editorial text-red-400/90" role="alert">
+                  SOMETHING WENT WRONG. PLEASE TRY AGAIN.
+                </p>
+              )}
             </div>
           </AnimateOnScroll>
         </form>
