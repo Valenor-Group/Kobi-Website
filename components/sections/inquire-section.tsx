@@ -41,7 +41,7 @@ export function InquireSection({ subject, onSubjectChange }: InquireSectionProps
               src={siteConfig.portrait}
               alt=""
               fill
-              className="object-cover object-right grayscale"
+              className="object-cover object-center grayscale md:object-right"
               style={{
                 maskImage:
                   'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
@@ -51,7 +51,7 @@ export function InquireSection({ subject, onSubjectChange }: InquireSectionProps
               onError={() => setPortraitError(true)}
             />
             <div
-              className="absolute inset-0 bg-gradient-to-r from-black via-black/15 at-[8%] to-transparent to-[25%] md:hidden"
+              className="absolute inset-0 bg-gradient-to-r from-black via-black/25 at-[3%] to-transparent to-[10%] md:hidden"
               aria-hidden
             />
             <div
