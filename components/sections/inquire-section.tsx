@@ -51,7 +51,11 @@ export function InquireSection({ subject, onSubjectChange }: InquireSectionProps
               onError={() => setPortraitError(true)}
             />
             <div
-              className="absolute inset-0 bg-gradient-to-r from-black via-black/40 at-[28%] to-transparent to-[58%]"
+              className="absolute inset-0 bg-gradient-to-r from-black via-black/15 at-[8%] to-transparent to-[25%] md:hidden"
+              aria-hidden
+            />
+            <div
+              className="absolute inset-0 hidden bg-gradient-to-r from-black via-black/40 at-[28%] to-transparent to-[58%] md:block"
               aria-hidden
             />
           </div>
