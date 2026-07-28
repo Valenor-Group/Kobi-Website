@@ -25,6 +25,8 @@ export function FeaturedRelease() {
             src={featuredProject.image}
             alt={featuredProject.title}
             fill
+            sizes="40px"
+            priority
             className="object-cover"
             onError={() => setImageError(true)}
           />

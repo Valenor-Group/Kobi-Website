@@ -1,5 +1,6 @@
 'use client'
 
+import { flushSync } from 'react-dom'
 import { createContext, useCallback, useContext, useState, type ReactNode } from 'react'
 import { cn } from '@/lib/utils'
 
@@ -13,7 +14,7 @@ export function SpaceNavProvider({ children }: { children: ReactNode }) {
   const [transition, setTransition] = useState<string | null>(null)
 
   const navigateToSpace = useCallback((href: string, spaceName: string) => {
-    setTransition(spaceName)
+    flushSync(() => setTransition(spaceName))
     window.setTimeout(() => {
       document.querySelector(href)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
       window.setTimeout(() => setTransition(null), 450)

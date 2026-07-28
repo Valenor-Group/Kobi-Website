@@ -1,27 +1,36 @@
 'use client'
 
+import { useRef } from 'react'
 import { navItems } from '@/lib/data'
 import { useAudio } from '@/components/audio/audio-provider'
 import { SectionAtmosphere } from '@/components/shared/section-atmosphere'
 import { useSpaceNav } from '@/components/shared/space-nav-context'
 import { FeaturedRelease } from '@/components/releases/featured-release'
+import { useSectionInView } from '@/hooks/use-section-in-view'
 
 export function CinematicHero() {
   const { audioEnabled, toggleAudio } = useAudio()
   const { navigateToSpace } = useSpaceNav()
+  const sectionRef = useRef<HTMLElement>(null)
+  const inView = useSectionInView(sectionRef, '0px', true)
 
   return (
-    <section id="home" className="relative flex h-screen w-full flex-col justify-between overflow-hidden bg-black">
-      <SectionAtmosphere variant="front" />
+    <section
+      ref={sectionRef}
+      id="home"
+      className="relative flex h-screen w-full flex-col justify-between overflow-hidden bg-black"
+    >
+      <SectionAtmosphere variant="front" paused={!inView} />
 
       <div className="relative z-10 flex flex-1 items-center justify-center">
         <nav className="flex flex-col items-center gap-6">
           {navItems.map((item, index) => (
             <button
               key={item.id}
+              type="button"
               data-cursor-label="ENTER"
               onClick={() => navigateToSpace(item.href, item.spaceName)}
-              className="group text-sharp transition-smooth hover:opacity-50"
+              className="group touch-manipulation text-sharp transition-smooth hover:opacity-50"
               style={{ animationDelay: `${index * 0.15}s` }}
             >
               <span className="flex items-center gap-4">
@@ -39,7 +48,7 @@ export function CinematicHero() {
         <button
           type="button"
           onClick={toggleAudio}
-          className="text-editorial transition-smooth hover:text-white/80 md:hidden"
+          className="touch-manipulation text-editorial transition-smooth hover:text-white/80 md:hidden"
         >
           AUDIO: {audioEnabled ? 'ON' : 'OFF'}
         </button>

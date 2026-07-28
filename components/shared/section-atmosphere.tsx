@@ -5,11 +5,18 @@ type AtmosphereVariant = 'front' | 'vault' | 'lab' | 'connect'
 interface SectionAtmosphereProps {
   variant: AtmosphereVariant
   className?: string
+  paused?: boolean
 }
 
-export function SectionAtmosphere({ variant, className }: SectionAtmosphereProps) {
+export function SectionAtmosphere({ variant, className, paused = false }: SectionAtmosphereProps) {
   return (
-    <div className={cn('pointer-events-none absolute inset-0 overflow-hidden', className)}>
+    <div
+      className={cn(
+        'pointer-events-none absolute inset-0 overflow-hidden',
+        paused && 'atmosphere-paused',
+        className,
+      )}
+    >
       {variant === 'front' && (
         <>
           <div className="absolute top-1/2 left-1/2 h-[600px] w-[600px] animate-morph bg-white/[0.03] blur-[100px]" />

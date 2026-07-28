@@ -25,9 +25,10 @@ export function SiteBrand() {
       )}
     >
       <button
+        type="button"
         onClick={() => scrollToSection('#home')}
         className={cn(
-          'font-sans text-sm font-semibold tracking-[0.25em] transition-smooth hover:opacity-100',
+          'touch-manipulation font-sans text-sm font-semibold tracking-[0.25em] transition-smooth hover:opacity-100',
           scrolled ? 'text-white' : 'text-white/60',
         )}
         aria-label="Back to home"
@@ -45,8 +46,9 @@ export function SiteBrand() {
         {navItems.map((item) => (
           <button
             key={item.id}
+            type="button"
             onClick={() => scrollToSection(item.href)}
-            className="text-editorial transition-smooth hover:text-white"
+            className="touch-manipulation text-editorial transition-smooth hover:text-white"
           >
             {item.label}
           </button>

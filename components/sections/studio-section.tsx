@@ -1,11 +1,17 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+import dynamic from 'next/dynamic'
 import { studioServices, type StudioService } from '@/lib/data'
 import { SectionAtmosphere } from '@/components/shared/section-atmosphere'
 import { AnimateOnScroll } from '@/components/shared/animate-on-scroll'
 import { scrollToSection } from '@/components/shared/space-nav-context'
-import { ServiceDetailPanel } from '@/components/studio/service-detail-panel'
+import { useSectionInView } from '@/hooks/use-section-in-view'
+
+const ServiceDetailPanel = dynamic(
+  () => import('@/components/studio/service-detail-panel').then((m) => m.ServiceDetailPanel),
+  { ssr: false },
+)
 
 interface StudioSectionProps {
   onServiceSelect: (service: string) => void
@@ -14,6 +20,8 @@ interface StudioSectionProps {
 export function StudioSection({ onServiceSelect }: StudioSectionProps) {
   const [selectedService, setSelectedService] = useState<StudioService | null>(null)
   const [panelOpen, setPanelOpen] = useState(false)
+  const sectionRef = useRef<HTMLElement>(null)
+  const inView = useSectionInView(sectionRef)
 
   const openService = (service: StudioService) => {
     setSelectedService(service)
@@ -26,8 +34,12 @@ export function StudioSection({ onServiceSelect }: StudioSectionProps) {
   }
 
   return (
-    <section id="studio" className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-black py-32 md:py-48">
-      <SectionAtmosphere variant="lab" />
+    <section
+      ref={sectionRef}
+      id="studio"
+      className="section-perf relative flex min-h-screen flex-col justify-center overflow-hidden bg-black py-32 md:py-48"
+    >
+      <SectionAtmosphere variant="lab" paused={!inView} />
 
       <AnimateOnScroll className="relative z-10 mb-16 px-8">
         <span className="text-editorial">[02] THE LAB</span>

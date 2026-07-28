@@ -12,6 +12,7 @@ interface ProjectArtworkProps {
   project: Project
   onOpenDetail?: () => void
   compact?: boolean
+  priority?: boolean
 }
 
 function PlayButton({
@@ -42,7 +43,7 @@ function PlayButton({
   )
 }
 
-export function ProjectArtwork({ project, onOpenDetail, compact }: ProjectArtworkProps) {
+export function ProjectArtwork({ project, onOpenDetail, compact, priority = false }: ProjectArtworkProps) {
   const [imageError, setImageError] = useState(false)
   const { playPreview, currentTrack, isPlaying } = useAudio()
 
@@ -91,6 +92,9 @@ export function ProjectArtwork({ project, onOpenDetail, compact }: ProjectArtwor
           src={project.image}
           alt={isUpcoming ? 'Upcoming release' : project.title}
           fill
+          sizes={compact ? '(max-width: 768px) 100vw, 50vw' : '(max-width: 768px) 60vw, 30vw'}
+          priority={priority}
+          loading={priority ? undefined : 'lazy'}
           className={cn(
             'object-cover transition-transform duration-700',
             !isUpcoming && 'group-hover:scale-105',

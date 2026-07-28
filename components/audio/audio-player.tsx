@@ -46,6 +46,7 @@ export function AudioPlayer({ className }: AudioPlayerProps) {
                   src={currentTrack.image}
                   alt={currentTrack.title}
                   fill
+                  sizes="48px"
                   className="object-cover"
                   onError={() => setImageError(true)}
                 />

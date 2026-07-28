@@ -252,6 +252,32 @@
   }
 }
 
+/* Off-screen sections: skip layout/paint until near viewport */
+@layer utilities {
+  .section-perf {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 100vh;
+  }
+}
+
+/* Pause background animations when section is off-screen */
+@layer utilities {
+  .atmosphere-paused .animate-morph,
+  .atmosphere-paused .animate-drift,
+  .atmosphere-paused .animate-drift-reverse,
+  .atmosphere-paused .animate-float,
+  .atmosphere-paused .animate-pulse-slow {
+    animation-play-state: paused;
+  }
+}
+
+/* Faster tap response on mobile nav controls */
+@layer utilities {
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
+}
+
 /* Hide scrollbar but keep functionality */
 @layer utilities {
   .scrollbar-hide {

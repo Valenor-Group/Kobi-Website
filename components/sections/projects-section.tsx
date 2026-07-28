@@ -1,13 +1,18 @@
 'use client'
 
 import { useState, useRef, useEffect, useCallback } from 'react'
+import dynamic from 'next/dynamic'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { releasedProjects, upcomingProjects, type Project } from '@/lib/data'
 import { ProjectArtwork } from '@/components/releases/project-artwork'
-import { ReleaseDetailPanel } from '@/components/releases/release-detail-panel'
 import { SectionAtmosphere } from '@/components/shared/section-atmosphere'
 import { AnimateOnScroll } from '@/components/shared/animate-on-scroll'
 import { cn } from '@/lib/utils'
+
+const ReleaseDetailPanel = dynamic(
+  () => import('@/components/releases/release-detail-panel').then((m) => m.ReleaseDetailPanel),
+  { ssr: false },
+)
 
 export function ProjectsSection() {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -151,9 +156,9 @@ export function ProjectsSection() {
     <section
       ref={sectionRef}
       id="projects"
-      className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-black py-32 md:py-48"
+      className="section-perf relative flex min-h-screen flex-col justify-center overflow-hidden bg-black py-32 md:py-48"
     >
-      <SectionAtmosphere variant="vault" />
+      <SectionAtmosphere variant="vault" paused={!isInView} />
 
       <AnimateOnScroll className="relative z-10 mb-16 px-8">
         <span className="text-editorial">[01] THE VAULT</span>
@@ -184,7 +189,11 @@ export function ProjectsSection() {
                 index === currentIndex ? 'scale-100 opacity-100' : 'scale-[0.92] opacity-45',
               )}
             >
-              <ProjectArtwork project={project} onOpenDetail={() => openDetail(project)} />
+              <ProjectArtwork
+                project={project}
+                onOpenDetail={() => openDetail(project)}
+                priority={index === 0}
+              />
               <AnimateOnScroll delay={index * 80}>
                 <div className="space-y-2">
                   <h3 className="text-sharp-lg text-white">{project.title}</h3>

@@ -1,11 +1,12 @@
 'use client'
 
 import Image from 'next/image'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useAudio } from '@/components/audio/audio-provider'
 import { siteConfig } from '@/lib/data'
 import { SectionAtmosphere } from '@/components/shared/section-atmosphere'
 import { AnimateOnScroll } from '@/components/shared/animate-on-scroll'
+import { useSectionInView } from '@/hooks/use-section-in-view'
 import { cn } from '@/lib/utils'
 
 interface InquireSectionProps {
@@ -20,6 +21,8 @@ export function InquireSection({ subject, onSubjectChange }: InquireSectionProps
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [portraitError, setPortraitError] = useState(false)
   const { currentTrack } = useAudio()
+  const sectionRef = useRef<HTMLElement>(null)
+  const inView = useSectionInView(sectionRef)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -67,8 +70,12 @@ export function InquireSection({ subject, onSubjectChange }: InquireSectionProps
   }
 
   return (
-    <section id="inquire" className="relative flex min-h-screen flex-col justify-center bg-black py-32 md:py-48">
-      <SectionAtmosphere variant="connect" />
+    <section
+      ref={sectionRef}
+      id="inquire"
+      className="section-perf relative flex min-h-screen flex-col justify-center bg-black py-32 md:py-48"
+    >
+      <SectionAtmosphere variant="connect" paused={!inView} />
 
       <div className="pointer-events-none absolute inset-0 flex items-center justify-end overflow-hidden pr-8 md:pr-16 lg:pr-24">
         {!portraitError ? (
@@ -77,6 +84,8 @@ export function InquireSection({ subject, onSubjectChange }: InquireSectionProps
               src={siteConfig.portrait}
               alt=""
               fill
+              sizes="(max-width: 768px) 50vw, 576px"
+              loading="lazy"
               className="object-cover object-center grayscale md:object-right"
               style={{
                 maskImage:
