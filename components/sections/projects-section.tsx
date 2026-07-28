@@ -156,7 +156,7 @@ export function ProjectsSection() {
     <section
       ref={sectionRef}
       id="projects"
-      className="section-perf relative flex min-h-screen flex-col justify-center overflow-hidden bg-black py-32 md:py-48"
+      className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-black py-32 md:py-48"
     >
       <SectionAtmosphere variant="vault" paused={!isInView} />
 

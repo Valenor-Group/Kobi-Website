@@ -37,7 +37,7 @@ export function StudioSection({ onServiceSelect }: StudioSectionProps) {
     <section
       ref={sectionRef}
       id="studio"
-      className="section-perf relative flex min-h-screen flex-col justify-center overflow-hidden bg-black py-32 md:py-48"
+      className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-black py-32 md:py-48"
     >
       <SectionAtmosphere variant="lab" paused={!inView} />
 

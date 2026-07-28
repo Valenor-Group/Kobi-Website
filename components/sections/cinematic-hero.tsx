@@ -4,13 +4,12 @@ import { useRef } from 'react'
 import { navItems } from '@/lib/data'
 import { useAudio } from '@/components/audio/audio-provider'
 import { SectionAtmosphere } from '@/components/shared/section-atmosphere'
-import { useSpaceNav } from '@/components/shared/space-nav-context'
+import { SectionLink } from '@/components/shared/section-link'
 import { FeaturedRelease } from '@/components/releases/featured-release'
 import { useSectionInView } from '@/hooks/use-section-in-view'
 
 export function CinematicHero() {
   const { audioEnabled, toggleAudio } = useAudio()
-  const { navigateToSpace } = useSpaceNav()
   const sectionRef = useRef<HTMLElement>(null)
   const inView = useSectionInView(sectionRef, '0px', true)
 
@@ -25,19 +24,19 @@ export function CinematicHero() {
       <div className="relative z-10 flex flex-1 items-center justify-center">
         <nav className="flex flex-col items-center gap-6">
           {navItems.map((item, index) => (
-            <button
+            <SectionLink
               key={item.id}
-              type="button"
+              href={item.href}
+              spaceName={item.spaceName}
               data-cursor-label="ENTER"
-              onClick={() => navigateToSpace(item.href, item.spaceName)}
-              className="group touch-manipulation text-sharp transition-smooth hover:opacity-50"
+              className="group text-sharp transition-smooth hover:opacity-50"
               style={{ animationDelay: `${index * 0.15}s` }}
             >
               <span className="flex items-center gap-4">
                 <span className="text-[10px] tracking-[0.3em] text-white/40">[{item.id}]</span>
                 <span className="tracking-[0.2em] text-white">{item.label}</span>
               </span>
-            </button>
+            </SectionLink>
           ))}
         </nav>
       </div>

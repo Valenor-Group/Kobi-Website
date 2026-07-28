@@ -5,12 +5,11 @@ import { useState } from 'react'
 import { Play } from 'lucide-react'
 import { featuredProject } from '@/lib/data'
 import { useAudio } from '@/components/audio/audio-provider'
-import { useSpaceNav } from '@/components/shared/space-nav-context'
+import { SectionLink } from '@/components/shared/section-link'
 import { cn } from '@/lib/utils'
 
 export function FeaturedRelease() {
   const { playPreview, currentTrack, isPlaying } = useAudio()
-  const { navigateToSpace } = useSpaceNav()
   const [imageError, setImageError] = useState(false)
 
   const isPlayingFeatured =
@@ -55,14 +54,14 @@ export function FeaturedRelease() {
             <Play className="ml-0.5 size-3 fill-white text-white" />
           </button>
         )}
-        <button
-          type="button"
+        <SectionLink
+          href="#projects"
+          spaceName="The Vault"
           data-cursor-label="ENTER"
-          onClick={() => navigateToSpace('#projects', 'The Vault')}
           className="text-editorial transition-smooth hover:text-white"
         >
           ENTER VAULT →
-        </button>
+        </SectionLink>
       </div>
     </div>
   )

@@ -73,7 +73,7 @@ export function InquireSection({ subject, onSubjectChange }: InquireSectionProps
     <section
       ref={sectionRef}
       id="inquire"
-      className="section-perf relative flex min-h-screen flex-col justify-center bg-black py-32 md:py-48"
+      className="relative flex min-h-screen flex-col justify-center bg-black py-32 md:py-48"
     >
       <SectionAtmosphere variant="connect" paused={!inView} />
 

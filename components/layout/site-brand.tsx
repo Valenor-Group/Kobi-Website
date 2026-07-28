@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { navItems } from '@/lib/data'
 import { useAudio } from '@/components/audio/audio-provider'
-import { scrollToSection } from '@/components/shared/space-nav-context'
+import { SectionLink } from '@/components/shared/section-link'
 import { cn } from '@/lib/utils'
 
 export function SiteBrand() {
@@ -24,17 +24,16 @@ export function SiteBrand() {
         scrolled && 'bg-black/40 backdrop-blur-sm',
       )}
     >
-      <button
-        type="button"
-        onClick={() => scrollToSection('#home')}
+      <SectionLink
+        href="#home"
         className={cn(
-          'touch-manipulation font-sans text-sm font-semibold tracking-[0.25em] transition-smooth hover:opacity-100',
+          'font-sans text-sm font-semibold tracking-[0.25em] transition-smooth hover:opacity-100',
           scrolled ? 'text-white' : 'text-white/60',
         )}
         aria-label="Back to home"
       >
         KOBI!
-      </button>
+      </SectionLink>
 
       <nav
         className={cn(
@@ -44,14 +43,13 @@ export function SiteBrand() {
         aria-hidden={!scrolled}
       >
         {navItems.map((item) => (
-          <button
+          <SectionLink
             key={item.id}
-            type="button"
-            onClick={() => scrollToSection(item.href)}
-            className="touch-manipulation text-editorial transition-smooth hover:text-white"
+            href={item.href}
+            className="text-editorial transition-smooth hover:text-white"
           >
             {item.label}
-          </button>
+          </SectionLink>
         ))}
         <span className="h-3 w-px bg-white/20" aria-hidden />
         <button

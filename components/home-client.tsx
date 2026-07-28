@@ -6,22 +6,13 @@ import { AudioProvider } from '@/components/audio/audio-provider'
 import { SiteBrand } from '@/components/layout/site-brand'
 import { SpaceNavProvider } from '@/components/shared/space-nav-context'
 import { CinematicHero } from '@/components/sections/cinematic-hero'
+import { ProjectsSection } from '@/components/sections/projects-section'
+import { StudioSection } from '@/components/sections/studio-section'
+import { InquireSection } from '@/components/sections/inquire-section'
 
 const CustomCursor = dynamic(
   () => import('@/components/shared/custom-cursor').then((m) => m.CustomCursor),
   { ssr: false },
-)
-
-const ProjectsSection = dynamic(
-  () => import('@/components/sections/projects-section').then((m) => m.ProjectsSection),
-)
-
-const StudioSection = dynamic(
-  () => import('@/components/sections/studio-section').then((m) => m.StudioSection),
-)
-
-const InquireSection = dynamic(
-  () => import('@/components/sections/inquire-section').then((m) => m.InquireSection),
 )
 
 const AudioPlayer = dynamic(
