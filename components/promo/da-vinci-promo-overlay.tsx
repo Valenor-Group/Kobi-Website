@@ -3,33 +3,39 @@
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { X } from 'lucide-react'
-import { promoOverlay } from '@/lib/data'
+import { isPromoActive, promoOverlay } from '@/lib/data'
 import { PromoStreamingLinks } from '@/components/promo/promo-streaming-links'
 
+function getInitialVisible() {
+  if (typeof window === 'undefined' || !isPromoActive()) return false
+  try {
+    return !sessionStorage.getItem(promoOverlay.storageKey)
+  } catch {
+    return true
+  }
+}
+
 export function DaVinciPromoOverlay() {
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState(getInitialVisible)
 
   useEffect(() => {
-    if (!promoOverlay.enabled) return
-
     try {
-      const dismissed = localStorage.getItem(promoOverlay.storageKey)
-      if (!dismissed) setVisible(true)
+      localStorage.removeItem(promoOverlay.legacyStorageKey)
     } catch {
-      setVisible(true)
+      // ignore storage failures
     }
   }, [])
 
   const dismiss = () => {
     setVisible(false)
     try {
-      localStorage.setItem(promoOverlay.storageKey, '1')
+      sessionStorage.setItem(promoOverlay.storageKey, '1')
     } catch {
       // ignore storage failures
     }
   }
 
-  if (!promoOverlay.enabled || !visible) return null
+  if (!isPromoActive() || !visible) return null
 
   return (
     <div
@@ -58,7 +64,6 @@ export function DaVinciPromoOverlay() {
             alt="Da Vinci EP artwork"
             fill
             sizes="(max-width: 768px) 280px, 320px"
-            priority
             className="object-cover"
           />
         </div>

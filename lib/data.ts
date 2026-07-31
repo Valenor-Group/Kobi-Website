@@ -216,6 +216,8 @@ export const siteConfig = {
 /** Temporary release promo — set enabled: false to remove the overlay. */
 export const promoOverlay = {
   enabled: true,
+  expiresAt: '2026-08-07',
+  dismissMode: 'session' as const,
   title: 'Stream Da Vinci by Kobi',
   image: '/images/album-10.jpg',
   links: {
@@ -223,7 +225,13 @@ export const promoOverlay = {
       'https://open.spotify.com/album/68YIyVM8YXCLERz3Z0K9xg?si=35RUHlY-SmC-46KClQiN7g',
     apple: 'https://music.apple.com/za/album/da-vinci-ep/6788947002',
   },
-  storageKey: 'kobi-da-vinci-promo-dismissed',
+  storageKey: 'kobi-da-vinci-promo-dismissed-session',
+  legacyStorageKey: 'kobi-da-vinci-promo-dismissed',
 } as const
+
+export function isPromoActive() {
+  if (!promoOverlay.enabled) return false
+  return Date.now() < new Date(promoOverlay.expiresAt).getTime()
+}
 
 export type StudioService = (typeof studioServices)[number]

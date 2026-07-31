@@ -9,7 +9,7 @@ import { CinematicHero } from '@/components/sections/cinematic-hero'
 import { ProjectsSection } from '@/components/sections/projects-section'
 import { StudioSection } from '@/components/sections/studio-section'
 import { InquireSection } from '@/components/sections/inquire-section'
-import { DaVinciPromoOverlay } from '@/components/promo/da-vinci-promo-overlay'
+import { isPromoActive } from '@/lib/data'
 
 const CustomCursor = dynamic(
   () => import('@/components/shared/custom-cursor').then((m) => m.CustomCursor),
@@ -21,13 +21,19 @@ const AudioPlayer = dynamic(
   { ssr: false },
 )
 
+const DaVinciPromoOverlay = dynamic(
+  () =>
+    import('@/components/promo/da-vinci-promo-overlay').then((m) => m.DaVinciPromoOverlay),
+  { ssr: false },
+)
+
 export function HomeClient() {
   const [subject, setSubject] = useState('')
 
   return (
     <AudioProvider>
       <SpaceNavProvider>
-        <DaVinciPromoOverlay />
+        {isPromoActive() && <DaVinciPromoOverlay />}
         <CustomCursor />
         <SiteBrand />
         <main className="bg-black">
