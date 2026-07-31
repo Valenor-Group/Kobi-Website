@@ -154,7 +154,11 @@ export const projects: Project[] = [
     image: '/images/album-10.jpg',
     status: 'upcoming',
     internalTitle: 'Da Vinci',
-    links: {},
+    links: {
+      spotify:
+        'https://open.spotify.com/album/68YIyVM8YXCLERz3Z0K9xg?si=35RUHlY-SmC-46KClQiN7g',
+      apple: 'https://music.apple.com/za/album/da-vinci-ep/6788947002',
+    },
   },
 ]
 
@@ -208,6 +212,19 @@ export const siteConfig = {
     apple: 'https://music.apple.com/za/artist/kobi/1507618248',
     instagram: 'https://www.instagram.com/kouldbekobi/',
   },
+} as const
+
+/** Temporary release promo — set enabled: false to remove the overlay. */
+export const promoOverlay = {
+  enabled: true,
+  title: 'Stream Da Vinci by Kobi',
+  image: '/images/album-10.jpg',
+  links: {
+    spotify:
+      'https://open.spotify.com/album/68YIyVM8YXCLERz3Z0K9xg?si=35RUHlY-SmC-46KClQiN7g',
+    apple: 'https://music.apple.com/za/album/da-vinci-ep/6788947002',
+  },
+  storageKey: 'kobi-da-vinci-promo-dismissed',
 } as const
 
 export type StudioService = (typeof studioServices)[number]
