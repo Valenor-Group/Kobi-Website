@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { X } from 'lucide-react'
 import { promoOverlay } from '@/lib/data'
-import { StreamingIconRow } from '@/components/releases/streaming-icons'
+import { PromoStreamingLinks } from '@/components/promo/promo-streaming-links'
 
 export function DaVinciPromoOverlay() {
   const [visible, setVisible] = useState(false)
@@ -52,7 +52,7 @@ export function DaVinciPromoOverlay() {
           {promoOverlay.title}
         </h1>
 
-        <div className="relative mb-8 aspect-square w-full max-w-[280px] overflow-hidden bg-white/5">
+        <div className="relative mb-8 aspect-square w-full max-w-[280px] overflow-hidden bg-white/5 shadow-[0_0_48px_rgba(255,255,255,0.14)] ring-1 ring-white/10">
           <Image
             src={promoOverlay.image}
             alt="Da Vinci EP artwork"
@@ -63,11 +63,7 @@ export function DaVinciPromoOverlay() {
           />
         </div>
 
-        <StreamingIconRow
-          links={promoOverlay.links}
-          className="justify-center gap-4 [&_svg]:size-7"
-          iconClassName="text-white/70 hover:text-white p-2"
-        />
+        <PromoStreamingLinks links={promoOverlay.links} />
       </div>
     </div>
   )

@@ -25,13 +25,26 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    id: '10',
+    title: 'Da Vinci',
+    type: 'EP',
+    year: '2026',
+    image: '/images/album-10.jpg',
+    status: 'released',
+    featured: true,
+    links: {
+      spotify:
+        'https://open.spotify.com/album/68YIyVM8YXCLERz3Z0K9xg?si=35RUHlY-SmC-46KClQiN7g',
+      apple: 'https://music.apple.com/za/album/da-vinci-ep/6788947002',
+    },
+  },
+  {
     id: '1',
     title: 'Trust Issues',
     type: 'EP',
     year: '2026',
     image: '/images/album-1.jpg',
     status: 'released',
-    featured: true,
     previewUrl: '/audio/preview-1.mp3',
     links: {
       spotify: 'https://open.spotify.com/album/4jR3rZ1RxYlrrwuQs9FBhC?si=CMKYRrK6S6KLp3ogARPNdg',
@@ -145,20 +158,6 @@ export const projects: Project[] = [
     status: 'upcoming',
     internalTitle: 'LET GO pt. 3',
     links: {},
-  },
-  {
-    id: '10',
-    title: 'COMING SOON',
-    type: 'TBA',
-    year: '2026',
-    image: '/images/album-10.jpg',
-    status: 'upcoming',
-    internalTitle: 'Da Vinci',
-    links: {
-      spotify:
-        'https://open.spotify.com/album/68YIyVM8YXCLERz3Z0K9xg?si=35RUHlY-SmC-46KClQiN7g',
-      apple: 'https://music.apple.com/za/album/da-vinci-ep/6788947002',
-    },
   },
 ]
 
